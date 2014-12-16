@@ -25,10 +25,11 @@ p{
 }
 #filter{
 	display: block;
-	width:100%;
+	width:98%;
 	position: absolute;
 	margin-left: 2%;
 	margin-right:2%;
+  margin-top: 3%; 
 	/*border:1px solid black;*/
 }
 
@@ -44,7 +45,7 @@ p{
 
 #likes input, #hugs input, #metoos input,#overall input,#remainder input{
 	display: inline-block;
-	width: 140px;
+	width: 120px;
 	text-align: center;
 	vertical-align: middle;
 	margin-top: 1px;
@@ -95,8 +96,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 #scatterplot_overall svg,#scatterplot_likes svg,#scatterplot_hugs svg,#scatterplot_metoos svg, #scatterplot_remainder svg{
 	border:1px solid #999;
-	width: 150px;
-	height: 150px;
+	width: 120px;
+	height: 120px;
 	display: block;
 	margin: auto;
 	/*background-color: #999;*/
@@ -111,17 +112,18 @@ input[type="range"]::-webkit-slider-thumb {
 	width:100%;
 	margin-left: auto;
 	margin-right:auto;
-	margin-top: 240px;
 	position: relative;
     /*border:1px solid black;*/
 	padding: 20px;
 }
 
 #topic_data_size{
-	display: block;
+  display: block;
 	float: left;
-	width: 100%;
-	text-align: center;
+  width: 30%;
+  margin-left:50px; 
+  margin-top:250px;
+  text-align: center;
 }
 
 /*Scattrt Plot style*/
@@ -242,3 +244,7 @@ path.area {
     pointer-events:none;
     visibility: hidden;
 }
+button:hover{
+    background-color: #666;
+    color: #fff;
+}''

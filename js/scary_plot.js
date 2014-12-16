@@ -13,11 +13,11 @@ var overall_filter=0,likes_filter=0, hugs_filter=0, metoos_filter=0, remainder_f
 
 //draw xy axis
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 1050 - margin.left,
-    height = 450 - margin.top;
+    width = 1020 - margin.left,
+    height = 380 - margin.top;
     margin_small = 6,
-    width_small=150-margin_small,
-    height_small=150-margin_small;
+    width_small=120-margin_small,
+    height_small=120-margin_small;
 
 var x = d3.scale.linear()
     .range([50, width]);
@@ -26,10 +26,10 @@ var y = d3.scale.linear()
     .range([height, 20]);
 
 var x_small = d3.scale.linear()
-    .range([6, width_small]);
+    .range([2, width_small]);
 
 var y_small = d3.scale.linear()
-.range([width_small, 6]);
+.range([height_small, 2]);
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -438,7 +438,7 @@ function draw_small_plot(data,map,data_num){
       .attr("cy", y_small(data.polarity))
       .style("stroke","#f2f2f2")
       .transition().duration(5000)
-      .attr("r",5)
+      .attr("r",3)
       .style("fill", color(data_num))
       .style("opacity",0.5)
       .ease("cubic-out");

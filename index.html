@@ -8,21 +8,27 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
     <link rel="stylesheet" type="text/css" href="scary_plot.css">
     <title>ScaryMommy Confession Board Data Visualization</title>
 
 </head>
 <body>
-  <header>
-  ScaryMommy Confession Board Data Visualization
+  <header id="header-topics">
+  <span>ScaryMommy Confession Board Data Visualization</span>
   </header>
+<div id="fullpage">
+  <div class="section">
+      <div id="topics"></div> 
+  </div>
+  <div class="section">
+      <div id = "keywords"> </div> 
+  </div>
 
-  <div id="topics"></div>
-  <div id = "keywords"> </div>  
-  <div class = "container"><h2>Post Board</h2></div> 
-  <div id = "timeline"></div>
-  <!-- <div id="scary_plot">
+  <div class="section">
+  <div id="scary_plot">
         <div id="filter">
             <div id = "scatterplot_overall" class="scatterplot_view_small"> 
                   <div id = "overall"><span>Overall View</span>
@@ -92,22 +98,29 @@
             </div>
        </div>
 
+       <div id = "topic_data_size">
+            Sample Data Size (Recommended Range: 100 - 10000)
+            <input id="data_size_input" type="text" name="likes" value="800"></input>
+            <button id="update_size" name="update_size" onclick="setdatasize();"> Update </button>
+            <button id="reset" name="reset" onclick="reset();"> Reset </button>
+      </div>
+
        <div id = "scatterplot">
-                  <div id = "topic_data_size">
-                      Sample Data Size (Recommended Range: 100 - 10000)
-                      <input id="data_size_input" type="text" name="likes" value="800"></input>
-                      <button id="update_size" name="update_size" onclick="setdatasize();"> Update </button>
-                      <button id="reset" name="reset" onclick="reset();"> Reset </button>
-                  </div>
-                  <div id="tooltip" class="hidden">
-                    <p><strong>Post <span id="post-id"></span></strong></p>
-                    <p><span id="post_value"></span></p>
-                    <p>Likes: <span id="post_likes"></span> Hugs: <span id="post_hugs"></span> Me toos: <span id="post_metoos"></span></p>
-                  </div>
+            <div id="tooltip" class="hidden">
+              <p><strong>Post <span id="post-id"></span></strong></p>
+              <p><span id="post_value"></span></p>
+              <p>Likes: <span id="post_likes"></span> Hugs: <span id="post_hugs"></span> Me toos: <span id="post_metoos"></span></p>
+            </div>
        </div>
-    </div> -->
-
-
+    </div>
+    </div>
+    <div class="section"> 
+      <div class = "container"></div> 
+    </div>
+    <div class="section">
+      <div id = "timeline"></div>
+    </div> 
+</div>
 
   <script src="js/topic_circles.js"></script>
   <script src="js/posts.js"></script>
@@ -115,6 +128,21 @@
   <script src="js/color.js"></script>
   <script src="js/timeline.js"></script>
   <script src="js/scary_plot.js"></script>
+
+  <script type="text/javascript" src="js/jquery.fullPage.js"></script>
+  <script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#fullpage').fullpage({
+        sectionsColor: ['#f2f2f2', '#f2f2f2', '#f2f2f2', '#f2f2f2', '#f2f2f2'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['All Topics', 'Topic Keywords', 'Topic Posts Scatterplot', 'Popular Topic Posts', 'All Topic Timeline']
+      });
+    });
+  </script>
 
 </body>
 </html>

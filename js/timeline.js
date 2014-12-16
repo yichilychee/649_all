@@ -7,8 +7,8 @@ d3.select(".timelinegraph").remove();
 var move_name = index_num.toString();
 
 var margin = {top: 20, right: 100, bottom: 30, left: 40},
-    width = 1500 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 1300 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
  
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width*(15 / 18)], .05);

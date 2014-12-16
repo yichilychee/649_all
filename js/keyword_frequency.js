@@ -10,7 +10,7 @@ function drawKeywordFreq(data_num){
   }
 
   d3.select(".barchart").remove();
-  var margin = {top: 10, right: 50, bottom: 70, left: 55},
+  var margin = {top: 30, right: 50, bottom: 70, left: 55},
     width = 1000 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -76,7 +76,7 @@ d3.csv("data/topic" + data_num + "_keywordfrequency.csv", type, function(error, 
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-      .attr("transform", "rotate(-90)")
+      .attr("transform","translate(20,-20)")
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")

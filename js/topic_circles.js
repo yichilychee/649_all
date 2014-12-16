@@ -37,7 +37,7 @@
       .append("circle")
       .attr("class","topic_circle")
       .attr("r", function(d,i){
-          return (d.num/1000);
+          return (d.num/900);
       })
       .attr("cx", function(d,i){ return (d.topic_num*100+100);})
       .attr("cy", 50)
@@ -52,11 +52,7 @@
       .on('mouseout', tip.hide)
       .transition().duration(2000).ease("linear")
       .attr("cx", function(d,i){ return (i*100+100);});
-      // .append("svg:title")
-      // .text(function(d) { return "Topic Frequency: " + d.num; });
-
-
-
+ 
 
     //draw topic title under topic circles
     d3.selectAll("g")
@@ -88,7 +84,7 @@
       .text(function(d,i){return d.topic_num;})
       .attr("text-anchor", "middle")
       .attr("transform", function(d,i){return "translate(" +(d.topic_num*100+100)+", 55)"})
-      .style("fill", "#0f0f0f")
+      .style("fill", "#ffffff")
       .style("font-size","15px")
       .transition().duration(2000).ease("linear")
       .attr("transform", function(d,i){return "translate(" +(i*100+100)+", 55)"});
