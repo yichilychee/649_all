@@ -7,8 +7,8 @@ d3.select(".timelinegraph").remove();
 var move_name = index_num.toString();
 
 var margin = {top: 20, right: 100, bottom: 30, left: 40},
-    width = 1300 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 1500 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
  
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width*(15 / 18)], .05);
@@ -55,7 +55,6 @@ d3.csv("data/stackdata.txt", function(error, data) {
 	d.genes = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
 	d.genes.forEach(function(d) { d.y0 /= y0; d.y1 /= y0; });
     });
-    //data.sort(function(a, b) { return b.genes[0].y1 - a.genes[0].y1; });
  
     x.domain(data.map(function(d) { return d.Sample; }));
  	legend_y.domain(data[0].genes.map(function(d) { return d.name; }));
@@ -92,29 +91,24 @@ d3.csv("data/stackdata.txt", function(error, data) {
 	      moveStuff(gene_index);
 	   });
 
-var curcolor;
+	var curcolor;
+
+	var tip = d3.tip()
+	  .attr('class', 'd3-tip')
+	  .offset([-10, -7])
+	  .html(function(d) {
+	  	  y_pct=d.y1-d.y0;
+	      console.log(y_pct); 
+	      return "Percentage: "+Math.floor(y_pct*1000)/10+"%";//"Percentage: <span style='color:white'>" + d.name + y_pct +"%</span>";
+	  })
+
+	  
 	svg.selectAll("rect")
     .attr("opacity", 1)
-    .on("mouseover", function(d, i) {
-      console.log(d);
-      console.log(d.y1-d.y0);
-      var y_pct=d.y1-d.y0
-      var pct=Math.floor(parseFloat(y_pct)*1000);
-      curcolor=d.name;
-      {					
-				d3.select(this).attr("stroke","white").attr("stroke-width",0.8);
-				svg.append("text")
-					.attr("x",1250)
-					.attr("y",400)
-					.attr("class","tooltip")
-					.html((pct/10) + "% of Posts <br\/>in this timechunk");					
-			}
-      })
-    .on("mouseout",function(){
-			svg.select(".tooltip").remove();
-			d3.select(this).attr("stroke",curcolor).attr("stroke-width",0.2);												
-		})
-	;
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
+
+    svg.call(tip);
 
 	var legend = svg.append("g")
 	.attr("class", "legend")
@@ -142,14 +136,13 @@ var curcolor;
 	    	.enter().append("text")
 	   	.attr("y", function(d,i) { return legend_y(d.name) + legend_y.rangeBand()/2; })
 		.attr("x", 1220)
-		.text(function(d) { return d.name; })
+		.text(function(d) { return "Topic"+d.name; })
 		.on("click", function(d) {
 		    var gene_index = categories_shift.indexOf(d.name);
 		    moveStuff(gene_index);
 		});
  
   var moveStuff = function(gene_index){
-  	//d3.select(".timelinegraph").remove();
 	categories_shift = categories;
 	for (var i=0; i<gene_index; i++){
 	    rotate(categories_shift);
@@ -159,7 +152,7 @@ var curcolor;
 	    d.genes = categories_shift.map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
 	    d.genes.forEach(function(d) { d.y0 /= y0; d.y1 /= y0; });
 	})
-	//data.sort(function(a, b) { return b.genes[0].y1 - a.genes[0].y1; });
+	
 	x.domain(data.map(function(d) { return d.Sample; }));
 	legend_y.domain(data[0].genes.map(function(d) { return d.name; }));
 	svg.select(".x.axis")
