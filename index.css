@@ -32,7 +32,7 @@ h1,h2{
 }
 
 p{
-  font-family: "Helvetica Neue", arial, sans-serif;
+  font-family: "Raleway","Helvetica",sans-serif;
   color: #333;
   font-size: 10px;
   line-height: 1.3;
@@ -152,10 +152,11 @@ margin:auto;
 
 .d3-tip {
   line-height: 1;
-  font-weight: bold;
+  /*font-weight: bold;*/
   padding: 12px;
   background: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: #f2f2f2;
+  font-family: "Raleway","Helvetica";
   border-radius: 2px;
 }
 

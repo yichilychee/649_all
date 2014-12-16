@@ -37,10 +37,10 @@ function drawKeywordFreq(data_num){
     .offset([-10, -7])
     .html(function(d) {
       if(data_num != 10){
-        return "<strong>Overall frequency:</strong> <span style='color:red'>" + d.Frequency_all + "</span>" + "<br/>" + "<strong>Topic frequency:</strong> <span style='color:red'>" + d.Frequency_topic + "</span>";
+        return "Overall frequency: <span style='color: #f2f2f2'>" + d.Frequency_all + "</span>" + "<br/>" + "Topic frequency: <span style='color:#f2f2f2'>" + d.Frequency_topic + "</span>";
       }
       else{
-        return "<strong>Overall frequency:</strong> <span style='color:red'>" + d.Frequency_all + "</span>";
+        return "Overall frequency: <span style='color: #f2f2f2'>" + d.Frequency_all + "</span>";
       }
     })
 
