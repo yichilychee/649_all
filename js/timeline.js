@@ -55,7 +55,6 @@ d3.csv("data/stackdata.txt", function(error, data) {
 	d.genes = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
 	d.genes.forEach(function(d) { d.y0 /= y0; d.y1 /= y0; });
     });
-    //data.sort(function(a, b) { return b.genes[0].y1 - a.genes[0].y1; });
  
     x.domain(data.map(function(d) { return d.Sample; }));
  	legend_y.domain(data[0].genes.map(function(d) { return d.name; }));
@@ -92,9 +91,21 @@ d3.csv("data/stackdata.txt", function(error, data) {
 	      moveStuff(gene_index);
 	   });
 
-var curcolor;
+	var curcolor;
+
+	var tip = d3.tip()
+	  .attr('class', 'd3-tip')
+	  .offset([-10, -7])
+	  .html(function(d) {
+	      return "Percentage: <span style='color:white'>" + d.name + Math.floor(parseFloat(d.y1-d.y0)*1000)/100 +"%</span>";
+	  })
+
+	  
 	svg.selectAll("rect")
     .attr("opacity", 1)
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide)
+    /*
     .on("mouseover", function(d, i) {
       console.log(d);
       console.log(d.y1-d.y0);
@@ -113,8 +124,9 @@ var curcolor;
     .on("mouseout",function(){
 			svg.select(".tooltip").remove();
 			d3.select(this).attr("stroke",curcolor).attr("stroke-width",0.2);												
-		})
-	;
+		})*/;
+
+    svg.call(tip);
 
 	var legend = svg.append("g")
 	.attr("class", "legend")
@@ -149,7 +161,6 @@ var curcolor;
 		});
  
   var moveStuff = function(gene_index){
-  	//d3.select(".timelinegraph").remove();
 	categories_shift = categories;
 	for (var i=0; i<gene_index; i++){
 	    rotate(categories_shift);
@@ -159,7 +170,7 @@ var curcolor;
 	    d.genes = categories_shift.map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
 	    d.genes.forEach(function(d) { d.y0 /= y0; d.y1 /= y0; });
 	})
-	//data.sort(function(a, b) { return b.genes[0].y1 - a.genes[0].y1; });
+	
 	x.domain(data.map(function(d) { return d.Sample; }));
 	legend_y.domain(data[0].genes.map(function(d) { return d.name; }));
 	svg.select(".x.axis")
