@@ -1,6 +1,14 @@
 //draw overall keyword frequency
 drawKeywordFreq(10);
 function drawKeywordFreq(data_num){
+
+  function color(i){
+  var color = d3.scale.ordinal()
+              .domain([0,1,2,3,4,5,6,7,8,9])
+              .range(["#D36B80","#C65D83","#DD5858","#E7793B","#E0A75B","#A5AF68","#618E62","#51A0A8","#4870AF","#706096"]);
+  return color(i);
+  }
+
   d3.select(".barchart").remove();
   var margin = {top: 10, right: 50, bottom: 70, left: 55},
     width = 1000 - margin.left - margin.right,
@@ -96,6 +104,7 @@ d3.csv("data/topic" + data_num + "_keywordfrequency.csv", type, function(error, 
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d.Frequency_topic); })
         .attr("height", function(d) { return height - y(d.Frequency_topic); })
+        .style("fill", color(data_num))
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide);
   }

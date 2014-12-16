@@ -7,7 +7,7 @@ d3.select(".sp_hugs").remove();
 d3.select(".sp_metoos").remove();
 d3.select(".sp_remainder").remove();
 d3.select(".sp_bigview").remove();
-var data_size = 500;
+var data_size = 50;
 var data_num = index_num;
 var overall_filter=0,likes_filter=0, hugs_filter=0, metoos_filter=0, remainder_filter=0;
 
