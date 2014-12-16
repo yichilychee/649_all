@@ -7,8 +7,8 @@ d3.select(".timelinegraph").remove();
 var move_name = index_num.toString();
 
 var margin = {top: 20, right: 100, bottom: 30, left: 40},
-    width = 1500 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 1300 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
  
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width*(15 / 18)], .05);
@@ -157,7 +157,7 @@ d3.csv("data/stackdata.txt", function(error, data) {
 	legend_y.domain(data[0].genes.map(function(d) { return d.name; }));
 	svg.select(".x.axis")
 	    .transition()
-	    .duration(1000)
+	    .duration(2000)
 	    .call(xAxis);
 	sample = svg.selectAll(".sample")
 	    .data(data)
