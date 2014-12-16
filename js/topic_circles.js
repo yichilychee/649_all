@@ -25,6 +25,7 @@
             drawKeywordFreq(d.topic_num);
             post_board(d.topic_num);
             moveRows(d.topic_num);
+            scatterPlot(d.topic_num);
       })
       ;
       // .append("svg:title")

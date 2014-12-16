@@ -102,7 +102,7 @@ var curcolor;
       var pct=Math.floor(parseFloat(y_pct)*1000);
       curcolor=d.name;
       {					
-				d3.select(this).attr("stroke","black").attr("stroke-width",0.8);
+				d3.select(this).attr("stroke","white").attr("stroke-width",0.8);
 				svg.append("text")
 					.attr("x",1250)
 					.attr("y",400)

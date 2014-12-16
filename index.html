@@ -3,14 +3,13 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="scary_plot.css">
     <title>ScaryMommy Confession Board Data Visualization</title>
 
 </head>
@@ -23,6 +22,90 @@
   <div id = "keywords"> </div>  
   <div class = "container"><h2>Post Board</h2></div> 
   <div id = "timeline"></div>
+  <div id="scary_plot">
+        <div id="filter">
+            <div id = "scatterplot_overall" class="scatterplot_view_small"> 
+                  <div id = "overall"><span>Overall View</span>
+                      <p>
+                        <label for="overall-slider">
+                          <span id="overall-slider-value" style="display:none"> </span>
+                              Likes > <span class="likes-slider-value"></span> or
+                              Hugs > <span class="hugs-slider-value"></span> or
+                              Metoos > <span class="metoos-slider-value"></span>
+                         
+                        </label>
+                      </p>
+                      <p>
+                        0<input type="range" min="0" max="100" id="overall-slider" width="200px;">100
+                      </p>
+                  </div>
+            </div> 
+            <div id = "scatterplot_likes">
+                  <div id = "likes"><span>Likes View</span>
+                       <p>
+                        <label for="likes-slider"> Likes > <span class="likes-slider-value">…</span>
+                        </label>
+                      </p>
+                      <p>
+                       0<input type="range" min="0" max="100" id="likes-slider" width="200px;">100
+                      </p>
+                  </div> 
+            </div> 
+
+            <div id = "scatterplot_hugs">
+                  <div id = "hugs"><span>Hugs View</span>
+                      <p>
+                        <label for="hugs-slider">Hugs > <span class="hugs-slider-value">…</span>
+                        </label>
+                      </p>
+                      <p>
+                        0<input type="range" min="0" max="100" id="hugs-slider" width="200px;">100
+                      </p>
+                  </div>
+            </div>  
+            
+            <div id = "scatterplot_metoos">
+                  <div id = "metoos"><span>Metoos View</span>
+                     <p>
+                        <label for="metoos-slider">Metoos > <span class="metoos-slider-value">…</span>
+                        </label>
+                      </p>
+                      <p>
+                        0<input type="range" min="0" max="100" id="metoos-slider" width="200px;">100
+                      </p>
+                </div>
+            </div>
+
+            <div id = "scatterplot_remainder">
+                  <div id = "remainder"><span>Remainder View</span>
+                     <p>
+                        <label for="remainder-slider"><span id="remainder-slider-value" style="display:none">…</span>
+                              Likes > <span class="likes-slider-value"></span> &
+                              Hugs > <span class="hugs-slider-value"></span> &
+                              Metoos > <span class="metoos-slider-value"></span>
+                        </label>
+                      </p>
+                      <p>
+                        0<input type="range" min="0" max="100" id="remainder-slider" width="200px;">100
+                      </p>
+                </div>
+            </div>
+       </div>
+
+       <div id = "scatterplot">
+                  <div id = "topic_data_size">
+                      Sample Data Size (Recommended Range: 100 - 10000)
+                      <input id="data_size_input" type="text" name="likes" value="800"></input>
+                      <button id="update_size" name="update_size" onclick="setdatasize();"> Update </button>
+                      <button id="reset" name="reset" onclick="reset();"> Reset </button>
+                  </div>
+                  <div id="tooltip" class="hidden">
+                    <p><strong>Post <span id="post-id"></span></strong></p>
+                    <p><span id="post_value"></span></p>
+                    <p>Likes: <span id="post_likes"></span> Hugs: <span id="post_hugs"></span> Me toos: <span id="post_metoos"></span></p>
+                  </div>
+       </div>
+    </div>
 
 
 
@@ -31,6 +114,7 @@
   <script src="js/keyword_frequency.js"></script>
   <script src="js/color.js"></script>
   <script src="js/timeline.js"></script>
+  <script src="js/scary_plot.js"></script>
 
 </body>
 </html>

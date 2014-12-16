@@ -203,12 +203,15 @@ body {
 }
 
 .tooltip{
+  width: 100px;
+  height: 20px;
 	margin-left: 100px;
 	text-anchor: middle;
 	font-family: sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
-	fill: black;	
+	fill: black;
+  background-color: #68b8c4;
 }
 /*timeline style ends*/
 
