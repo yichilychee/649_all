@@ -25,7 +25,8 @@ var color = d3.scale.ordinal()
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
-    .tickValues([2008,2014])
+    .ticks(10)
+    //.tickValues([2008,2014])
     .tickSize(0, 0, 0)
     .tickPadding(6);
  
