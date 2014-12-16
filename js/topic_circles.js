@@ -76,7 +76,7 @@
         }
       })
       .attr("transform", function(d,i){return "translate(" +(d.topic_num*100+100)+", 100)"})
-      .style("fill", function(d, i) { return color(i); })
+      .style("fill", function(d, i) { return color(d.topic_num); })
       .transition().duration(2000).ease("linear")
       .attr("transform", function(d,i){return "translate(" +(i*100+100)+", 100)"});
 
